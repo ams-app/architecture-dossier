@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AMS — Dossier d'architecture</title>
+<style>
+  :root {
+    --paper: #eaf2f6;
+    --paper-2: #dde9f0;
+    --ink: #0e3a5c;
+    --ink-soft: #3d6580;
+    --ink-faint: #6f93a8;
+    --line: #b9d3e0;
+    --line-soft: #cfe1ea;
+    --accent: #b85c22;
+    --accent-soft: #e7d3bf;
+    --accent-ink: #6e3712;
+    --sheet-bg: #f3f8fa;
+    --sheet-ink: #0e3a5c;
+    --sheet-line: #9fc2d4;
+    --sheet-grid: rgba(14, 58, 92, 0.08);
+    --good: #2f6f4e;
+    --good-soft: #dcebe1;
+    --warn: #93601f;
+    --warn-soft: #f1e2c8;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Consolas, Menlo, monospace;
+    --sans: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0b2c47;
+      --paper-2: #0e3452;
+      --ink: #dcebf3;
+      --ink-soft: #9dc0d4;
+      --ink-faint: #6f93a8;
+      --line: #1f4a68;
+      --line-soft: #163d58;
+      --accent: #e08a44;
+      --accent-soft: #3a2a1c;
+      --accent-ink: #f3caa0;
+      --good: #7fcba3;
+      --good-soft: #163a2a;
+      --warn: #e0b467;
+      --warn-soft: #3a2f18;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-attachment: local;
+  }
+
+  .dossier {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 24px 100px;
+  }
+
+  .titleblock {
+    border: 2px solid var(--ink);
+    background: var(--paper-2);
+    padding: 28px 32px;
+    display: grid;
+    gap: 18px;
+  }
+
+  .titleblock__eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .titleblock h1 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    line-height: 1.08;
+  }
+
+  .titleblock__sub {
+    margin: 0;
+    max-width: 62ch;
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+
+  .titleblock__meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 4px;
+  }
+
+  .titleblock__meta div {
+    background: var(--paper);
+    padding: 10px 14px;
+  }
+
+  .titleblock__meta dt {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 4px;
+  }
+
+  .titleblock__meta dd {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+
+  .index {
+    margin-top: 28px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+  }
+
+  .index__head {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--line);
+    background: var(--paper-2);
+  }
+
+  .index ol {
+    list-style: none;
+    margin: 0;
+    padding: 6px 0;
+  }
+
+  .index li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 7px 16px;
+    font-size: 14px;
+  }
+
+  .index li a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--line-soft);
+  }
+  .index li a:hover { border-bottom-color: var(--accent); color: var(--accent-ink); }
+
+  .index__num {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-weight: 700;
+    min-width: 2.4em;
+  }
+
+  .index__fill {
+    flex: 1;
+    border-bottom: 1px dotted var(--line-soft);
+    margin-bottom: 4px;
+  }
+
+  .index__status {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  .sheet {
+    margin-top: 56px;
+    scroll-margin-top: 20px;
+  }
+
+  .sheet__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .sheet__tab b {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3px 8px;
+    font-weight: 700;
+  }
+
+  .sheet h2 {
+    margin: 0 0 6px;
+    font-size: clamp(19px, 2.6vw, 24px);
+    font-weight: 800;
+    letter-spacing: -0.005em;
+    text-wrap: balance;
+  }
+
+  .sheet__note {
+    margin: 0 0 18px;
+    max-width: 68ch;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+
+  .sheet__note code, p code, li code {
+    font-family: var(--mono);
+    font-size: 0.9em;
+    background: var(--paper-2);
+    border: 1px solid var(--line-soft);
+    padding: 0.05em 0.4em;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  .drawing {
+    position: relative;
+    background: var(--sheet-bg);
+    border: 1.5px solid var(--sheet-ink);
+    padding: 22px 18px 16px;
+    background-image:
+      linear-gradient(var(--sheet-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--sheet-grid) 1px, transparent 1px);
+    background-size: 18px 18px;
+    overflow-x: auto;
+  }
+
+  .drawing::before, .drawing::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid var(--sheet-ink);
+    opacity: 0.55;
+  }
+  .drawing::before { top: -1.5px; left: -1.5px; border-right: none; border-bottom: none; }
+  .drawing::after { bottom: -1.5px; right: -1.5px; border-left: none; border-top: none; }
+
+  .drawing .mermaid {
+    display: flex;
+    justify-content: center;
+  }
+
+  .drawing__caption {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--sheet-ink);
+    opacity: 0.65;
+    text-align: right;
+    margin-top: 10px;
+    letter-spacing: 0.03em;
+  }
+
+  .callout {
+    margin-top: 16px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 12px 16px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .callout b { color: var(--accent-ink); }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .card {
+    border: 1px solid var(--line);
+    background: var(--paper);
+    padding: 14px 16px;
+  }
+  .card h3 {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .card ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.7; }
+  .card code { font-family: var(--mono); font-size: 0.92em; }
+
+  table.rev {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  table.rev th, table.rev td {
+    border: 1px solid var(--line);
+    padding: 8px 10px;
+    text-align: left;
+  }
+  table.rev th {
+    background: var(--paper-2);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  table.rev td.rev-tag { font-family: var(--mono); font-weight: 700; color: var(--accent-ink); white-space: nowrap; }
+  table.rev td.rev-date { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--ink-faint); white-space: nowrap; }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  .pill--done { background: var(--good-soft); color: var(--good); }
+  .pill--now { background: var(--accent-soft); color: var(--accent-ink); }
+  .pill--next { background: var(--warn-soft); color: var(--warn); }
+
+  footer.colophon {
+    margin-top: 64px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  a { color: inherit; }
+</style>
+</head>
+<body>
+
+<div class="dossier">
+
+  <div class="titleblock">
+    <div class="titleblock__eyebrow">Ketrika — Dossier technique</div>
+    <h1>AMS — Audit Management System<br />Vue d'ensemble de l'architecture</h1>
+    <p class="titleblock__sub">
+      Six planches pour situer le code : qui utilise AMS et où il tourne, quels
+      conteneurs le composent, comment le monorepo est rangé, les deux styles
+      d'architecture qui coexistent volontairement, un flux réel (connexion +
+      2FA), et la feuille de route des 32 sprints. Généré à partir de l'état du
+      dépôt au tag <code>v0.6.0</code>.
+    </p>
+    <dl class="titleblock__meta">
+      <div><dt>Version</dt><dd>v0.6.0</dd></div>
+      <div><dt>Sprint courant</dt><dd>S7-8 / 32</dd></div>
+      <div><dt>Statut</dt><dd>Lot A — en cours</dd></div>
+      <div><dt>Dépôt</dt><dd>ams-app/ams</dd></div>
+    </dl>
+  </div>
+
+  <nav class="index">
+    <div class="index__head">Sommaire des planches</div>
+    <ol>
+      <li><span class="index__num">SH.01</span><a href="#sh01">Contexte système</a><span class="index__fill"></span><span class="index__status">déploiement client</span></li>
+      <li><span class="index__num">SH.02</span><a href="#sh02">Conteneurs &amp; stack</a><span class="index__fill"></span><span class="index__status">Docker / Fastify / Postgres</span></li>
+      <li><span class="index__num">SH.03</span><a href="#sh03">Carte du monorepo</a><span class="index__fill"></span><span class="index__status">packages/*</span></li>
+      <li><span class="index__num">SH.04</span><a href="#sh04">Deux architectures, un dépôt</a><span class="index__fill"></span><span class="index__status">Clean Architecture depuis S3</span></li>
+      <li><span class="index__num">SH.05</span><a href="#sh05">Flux réel — connexion + 2FA</a><span class="index__fill"></span><span class="index__status">séquence</span></li>
+      <li><span class="index__num">SH.06</span><a href="#sh06">Feuille de route V1</a><span class="index__fill"></span><span class="index__status">32 sprints</span></li>
+    </ol>
+  </nav>
+
+  <!-- SH.01 — Contexte système -->
+  <section class="sheet" id="sh01">
+    <div class="sheet__tab"><b>SH.01</b> Contexte système</div>
+    <h2>AMS tourne dans le réseau local du client, pas dans le cloud</h2>
+    <p class="sheet__note">
+      Contrainte structurante depuis la Partie 1 (Vision) : on-premise, aucune
+      donnée d'audit chez un tiers. Le seul flux sortant est l'email
+      (SMTP local ou relais du client) pour les codes OTP et futures relances.
+      Les mises à jour arrivent en tirant une image versionnée, jamais en
+      installant depuis une source externe non maîtrisée.
+    </p>
+    <div class="drawing">
+      <pre class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': {'background':'#f3f8fa','primaryColor':'#dfeaf0','primaryTextColor':'#0e3a5c','primaryBorderColor':'#0e3a5c','secondaryColor':'#eef5f8','secondaryTextColor':'#0e3a5c','tertiaryColor':'#f3f8fa','tertiaryTextColor':'#0e3a5c','lineColor':'#3d6580','textColor':'#0e3a5c','mainBkg':'#dfeaf0','nodeBorder':'#0e3a5c','clusterBkg':'#e4eef3','clusterBorder':'#3d6580','titleColor':'#0e3a5c','edgeLabelBackground':'#f3f8fa','fontFamily':'ui-monospace, SFMono-Regular, Menlo, monospace','fontSize':'13px'}}}%%
+flowchart TB
+  subgraph reseau["Réseau local du client (on-premise)"]
+    direction TB
+    admin["Admin"]
+    dai["DAI Entité"]
+    cm["Chef de mission"]
+    aud["Auditeur"]
+    ams(["AMS\nweb + api + postgres"])
+    smtp["Serveur SMTP local\n(relais interne client)"]
+    admin -->|navigateur| ams
+    dai -->|navigateur| ams
+    cm -->|navigateur| ams
+    aud -->|navigateur| ams
+    ams -->|codes OTP 2FA| smtp
+  end
+  ghcr[["GitHub Container Registry\nimages versionnées, privées"]] -. "docker pull, à chaque mise à jour" .-> ams
+      </pre>
+    </div>
+    <p class="drawing__caption">SH.01 — 4 rôles V1 (Admin, DAI Entité, CM, Auditeur), mono-entité</p>
+  </section>
+
+  <!-- SH.02 — Conteneurs -->
+  <section class="sheet" id="sh02">
+    <div class="sheet__tab"><b>SH.02</b> Conteneurs &amp; stack</div>
+    <h2>Trois conteneurs, un réseau Docker, pas de service SaaS tiers</h2>
+    <p class="sheet__note">
+      <code>docker-compose.review.yml</code> et <code>docker-compose.yml</code>
+      (production) font tourner les mêmes images — seule la présence de TLS et
+      de Maildev change. L'entrypoint de <code>api</code> migre et seed la
+      base automatiquement au démarrage : <code>docker compose up -d</code>
+      suffit.
+    </p>
+    <div class="drawing">
+      <pre class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': {'background':'#f3f8fa','primaryColor':'#dfeaf0','primaryTextColor':'#0e3a5c','primaryBorderColor':'#0e3a5c','secondaryColor':'#eef5f8','secondaryTextColor':'#0e3a5c','tertiaryColor':'#f3f8fa','tertiaryTextColor':'#0e3a5c','lineColor':'#3d6580','textColor':'#0e3a5c','mainBkg':'#dfeaf0','nodeBorder':'#0e3a5c','clusterBkg':'#e4eef3','clusterBorder':'#3d6580','titleColor':'#0e3a5c','edgeLabelBackground':'#f3f8fa','fontFamily':'ui-monospace, SFMono-Regular, Menlo, monospace','fontSize':'13px'}}}%%
+flowchart LR
+  browser["Navigateur"] -->|"HTTPS + cookie de session opaque"| web
+  subgraph docker["Conteneurs Docker"]
+    web["web\nReact 19 + Vite\nservi par Nginx"]
+    api["api\nFastify 5 + TypeScript\n:3000"]
+    pg[("postgres\nPostgreSQL 16")]
+    maildev["maildev\n(dev / revue uniquement)"]
+  end
+  web -->|"proxy /api/*"| api
+  api -->|"Drizzle ORM"| pg
+  api -->|"SMTP"| maildev
+      </pre>
+    </div>
+    <p class="drawing__caption">SH.02 — worker (jobs planifiés) prévu au schéma, pas encore construit</p>
+  </section>
+
+  <!-- SH.03 — Monorepo -->
+  <section class="sheet" id="sh03">
+    <div class="sheet__tab"><b>SH.03</b> Carte du monorepo</div>
+    <h2><code>packages/shared</code> irrigue l'api et le web</h2>
+    <p class="sheet__note">
+      Modules métier organisés en miroir : qui touche aux utilisateurs ouvre
+      <code>api/modules/users</code> et <code>web/features/users</code>, pas
+      15 dossiers. Modifier un schéma Zod dans <code>shared</code> propage les
+      types instantanément aux deux côtés.
+    </p>
+    <div class="drawing">
+      <pre class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': {'background':'#f3f8fa','primaryColor':'#dfeaf0','primaryTextColor':'#0e3a5c','primaryBorderColor':'#0e3a5c','secondaryColor':'#eef5f8','secondaryTextColor':'#0e3a5c','tertiaryColor':'#f3f8fa','tertiaryTextColor':'#0e3a5c','lineColor':'#3d6580','textColor':'#0e3a5c','mainBkg':'#dfeaf0','nodeBorder':'#0e3a5c','clusterBkg':'#e4eef3','clusterBorder':'#3d6580','titleColor':'#0e3a5c','edgeLabelBackground':'#f3f8fa','fontFamily':'ui-monospace, SFMono-Regular, Menlo, monospace','fontSize':'13px'}}}%%
+flowchart TB
+  subgraph shared["packages/shared/src"]
+    zodS["schemas/ — DTOs Zod\n(auth, users, referentiel, planAnnuel)"]
+    constS["constants/ — rôles, politique mdp,\nreferentiel, planAnnuel"]
+  end
+  subgraph api["packages/api/src/modules"]
+    auth["auth/\nroutes.ts + service.ts"]
+    users["users/\nroutes.ts + service.ts"]
+    audit["auditLog/\ndomain + application + infrastructure"]
+    ref["referentielTaches/\ndomain + application + infrastructure"]
+    plan["planAnnuel/\ndomain + application + infrastructure"]
+  end
+  subgraph web["packages/web/src"]
+    routesW["routes/\nlogin, otp, home, admin/users,\nadmin/referentiel, plan-annuel"]
+    features["features/\nuseAuth, useUsers,\nuseReferentielTaches, usePlanAnnuel"]
+    i18nW["i18n/\nfr.json, en.json"]
+  end
+  poc["packages/gantt-poc\nspike isolé S4 — aucun lien avec\nshared/api/web, pas déployé"]
+  shared -.types partagés.-> api
+  shared -.types partagés.-> web
+  auth === |miroir| features
+  users === |miroir| routesW
+  ref === |miroir| routesW
+  plan === |miroir| routesW
+      </pre>
+    </div>
+    <p class="drawing__caption">SH.03 — === indique la correspondance module métier ↔ feature front</p>
+  </section>
+
+  <!-- SH.04 — Clean Architecture -->
+  <section class="sheet" id="sh04">
+    <div class="sheet__tab"><b>SH.04</b> Deux architectures, un dépôt</div>
+    <h2>Sprint 1-2 reste simple ; Sprint 3+ suit Clean Architecture</h2>
+    <p class="sheet__note">
+      Décision prise en tête de Sprint 3 (voir <code>Livrable_Partie_4_Architecture.md</code> §4.2.9) :
+      pas de refonte rétroactive d'<code>auth</code>/<code>users</code> — un CRUD
+      simple ne gagne pas grand-chose à la séparation. <code>auditLog</code> (S3),
+      <code>referentielTaches</code> (S5-6) et <code>planAnnuel</code> (S7-8)
+      suivent tous les trois le pattern de droite.
+    </p>
+    <div class="drawing">
+      <pre class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': {'background':'#f3f8fa','primaryColor':'#dfeaf0','primaryTextColor':'#0e3a5c','primaryBorderColor':'#0e3a5c','secondaryColor':'#eef5f8','secondaryTextColor':'#0e3a5c','tertiaryColor':'#f3f8fa','tertiaryTextColor':'#0e3a5c','lineColor':'#3d6580','textColor':'#0e3a5c','mainBkg':'#dfeaf0','nodeBorder':'#0e3a5c','clusterBkg':'#e4eef3','clusterBorder':'#3d6580','titleColor':'#0e3a5c','edgeLabelBackground':'#f3f8fa','fontFamily':'ui-monospace, SFMono-Regular, Menlo, monospace','fontSize':'13px'}}}%%
+flowchart LR
+  subgraph old["auth / users — Sprint 1-2"]
+    direction TB
+    r1["routes.ts\n(Fastify handlers)"] --> s1["service.ts\n(logique + requêtes)"]
+    s1 --> d1[("Drizzle\ndirect")]
+  end
+  subgraph new["auditLog / referentielTaches / planAnnuel — Sprint 3+"]
+    direction TB
+    idx["index.ts\nracine de composition"] --> uc["application/useCases"]
+    uc --> dom["domain/\nentité + invariants"]
+    uc -.dépend de l'interface.-> port["application/ports\n(interface)"]
+    infra["infrastructure/\nDrizzle*Repository"] -.implémente.-> port
+  end
+      </pre>
+    </div>
+    <p class="drawing__caption">SH.04 — inversion de dépendance : le use case ne connaît jamais Drizzle</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Pourquoi garder l'ancien pattern pour auth/users</h3>
+        <ul>
+          <li>CRUD direct, peu de règles métier à isoler</li>
+          <li>1 dev à temps partagé — 3 fichiers, pas 5, tant que ça suffit</li>
+          <li>Migration possible plus tard, sans urgence</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Pourquoi Clean Architecture à partir de S3</h3>
+        <ul>
+          <li>Logique métier dense (charge agrégée, snapshots, machine à états)</li>
+          <li>Use cases testables sans Postgres (98 tests unitaires cumulés, 0 DB)</li>
+          <li>Port remplaçable sans toucher la règle métier</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SH.05 — Sequence -->
+  <section class="sheet" id="sh05">
+    <div class="sheet__tab"><b>SH.05</b> Flux réel — connexion + 2FA</div>
+    <h2>Le chemin le plus complet construit à ce jour</h2>
+    <p class="sheet__note">
+      Login, verrouillage anti brute-force, 2FA email OTP et écriture dans le
+      journal d'audit (Module 16, Sprint 3) — le tout vérifié par tests
+      d'intégration sur base Postgres réelle, pas mocké.
+    </p>
+    <div class="drawing">
+      <pre class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': {'background':'#f3f8fa','primaryColor':'#dfeaf0','primaryTextColor':'#0e3a5c','primaryBorderColor':'#0e3a5c','lineColor':'#3d6580','textColor':'#0e3a5c','actorBkg':'#dfeaf0','actorBorder':'#0e3a5c','actorTextColor':'#0e3a5c','actorLineColor':'#3d6580','signalColor':'#0e3a5c','signalTextColor':'#0e3a5c','labelBoxBkgColor':'#f0ddc8','labelBoxBorderColor':'#b85c22','labelTextColor':'#6e3712','loopTextColor':'#0e3a5c','noteBkgColor':'#f0ddc8','noteBorderColor':'#b85c22','noteTextColor':'#6e3712','activationBkgColor':'#e4eef3','activationBorderColor':'#3d6580','sequenceNumberColor':'#f3f8fa','fontFamily':'ui-monospace, SFMono-Regular, Menlo, monospace','fontSize':'13px'}}}%%
+sequenceDiagram
+  participant U as Utilisateur
+  participant W as web
+  participant A as api (auth/service.ts)
+  participant J as auditLog
+  participant D as PostgreSQL
+  U->>W: email + mot de passe
+  W->>A: POST /auth/login
+  A->>D: vérifie le hash Argon2id
+  alt échec x5
+    A->>D: verrouille le compte 15 min
+    A->>J: recordAuditEvent(AUTH_ACCOUNT_LOCKED)
+    A-->>W: 423 ACCOUNT_LOCKED
+  else 2FA activée sur le compte
+    A->>U: code OTP par email (Maildev en dev/revue)
+    U->>W: saisit le code
+    W->>A: POST /auth/verify-otp
+    A->>D: crée la session (cookie opaque)
+    A-->>W: 200 + cookie ams_session
+  end
+      </pre>
+    </div>
+    <p class="drawing__caption">SH.05 — 63 tests d'intégration cumulés couvrent ce type de flux (auth, users, auditLog, referentielTaches, planAnnuel)</p>
+  </section>
+
+  <!-- SH.06 — Roadmap -->
+  <section class="sheet" id="sh06">
+    <div class="sheet__tab"><b>SH.06</b> Feuille de route V1</div>
+    <h2>32 sprints, ≈ 14,7 mois — Sprint 7-8 vient de fermer</h2>
+    <p class="sheet__note">
+      Cf. <code>Livrable_Partie_7_Roadmap.md</code> §7.2. Le chemin critique
+      passe par Habilitations → Référentiel IIA → Plan annuel → Missions →
+      Tâches → Gantt → Synthèse DAI (agrégateur final, construit en dernier).
+    </p>
+    <div class="drawing">
+      <pre class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': {'background':'#f3f8fa','primaryColor':'#dfeaf0','primaryTextColor':'#0e3a5c','primaryBorderColor':'#0e3a5c','lineColor':'#3d6580','textColor':'#0e3a5c','titleColor':'#0e3a5c','sectionBkgColor':'#e4eef3','sectionBkgColor2':'#d7e7ee','altSectionBkgColor':'#f3f8fa','gridColor':'#c3d8e2','taskBkgColor':'#dfeaf0','taskTextColor':'#0e3a5c','taskTextOutsideColor':'#0e3a5c','taskTextLightColor':'#0e3a5c','taskTextDarkColor':'#0e3a5c','taskBorderColor':'#0e3a5c','activeTaskBkgColor':'#f0ddc8','activeTaskBorderColor':'#b85c22','doneTaskBkgColor':'#cfe0e8','doneTaskBorderColor':'#3d6580','critBkgColor':'#f4c9a8','critBorderColor':'#b85c22','todayLineColor':'#b85c22','fontFamily':'ui-monospace, SFMono-Regular, Menlo, monospace','fontSize':'12.5px'}}}%%
+gantt
+  dateFormat YYYY-MM-DD
+  axisFormat %b %y
+  title Feuille de route V1 (Partie 7 §7.2)
+  section Phase 0 — Fondations
+  S1-S4 livrés (socle, users, audit, POC Gantt) :done, s1, 2026-06-16, 56d
+  section Lot A — Planification
+  S5-S6 Référentiel IIA (livré)        :done, s5, after s1, 28d
+  S7-S8 Plan annuel (livré)            :done, s7, after s5, 28d
+  S9 Missions, cadrage (prochain)      :s9, after s7, 14d
+  section Lot B — Exécution mission
+  S10-S16 Tâches, Gantt, Charge        :s10, after s9, 98d
+  section Lot C — Suivi
+  S17-S20 Feuilles temps, Demandes     :s17, after s10, 56d
+  section Lot C/D — Boucles avancées
+  S21-S27 Recos, Constats, Risques     :s21, after s17, 98d
+  section Lot E — Pilotage
+  S28-S29 Console admin, mobile       :s28, after s21, 28d
+  section Stabilisation
+  S30-S32 E2E, dogfooding, démo        :s30, after s28, 42d
+      </pre>
+    </div>
+    <p class="drawing__caption">SH.06 — durées indicatives (2 semaines/sprint), pas des dates engagées</p>
+    <div class="callout">
+      <b>Point de vigilance (§7.3.2) :</b> Synthèse DAI (Module 14) agrège
+      presque tous les autres modules — il ne peut raisonnablement être
+      construit qu'en dernier. Si S4 (POC Gantt) révèle une complexité
+      substantiellement supérieure à l'estimation, S12-S16 doivent être
+      replanifiés avant d'être engagés, pas ajustés en cours de route.
+    </div>
+  </section>
+
+  <!-- Revision history -->
+  <section class="sheet" id="revisions">
+    <div class="sheet__tab"><b>REV</b> Historique des révisions</div>
+    <h2>Journal des tags publiés</h2>
+    <table class="rev">
+      <thead>
+        <tr><th>Tag</th><th>Date</th><th>Contenu</th><th>Statut</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rev-tag">v0.1.0</td>
+          <td class="rev-date">2026-07-16</td>
+          <td>Sprint 1 — monorepo, CI/CD, schéma Postgres initial, auth locale</td>
+          <td><span class="pill pill--done">livré</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.2.0</td>
+          <td class="rev-date">2026-07-18</td>
+          <td>Sprint 2 — CRUD utilisateurs, 2FA email OTP, console admin</td>
+          <td><span class="pill pill--done">livré</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.2.1</td>
+          <td class="rev-date">2026-07-19</td>
+          <td>Renommage EN du code applicatif + i18n fr/en (patch, pas un sprint)</td>
+          <td><span class="pill pill--done">livré</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.3.0</td>
+          <td class="rev-date">2026-07-21</td>
+          <td>Sprint 3 — journal d'audit (Module 16), health-check, Clean Architecture (nouveaux modules)</td>
+          <td><span class="pill pill--done">livré</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.4.0</td>
+          <td class="rev-date">2026-07-22</td>
+          <td>Sprint 4 — POC Gantt (spike isolé), <b>décision Go</b> (sous 5 ms jusqu'à 5 000 tâches synthétiques)</td>
+          <td><span class="pill pill--done">livré</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.5.0</td>
+          <td class="rev-date">2026-07-23</td>
+          <td>Sprint 5-6 — Référentiel de tâches IIA (Module 5), premier module métier réel du Lot A</td>
+          <td><span class="pill pill--done">livré</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.6.0</td>
+          <td class="rev-date">2026-07-27</td>
+          <td>Sprint 7-8 — Plan annuel (Module 1) : missions du plan, initialisation N-1, snapshots de validation, charge agrégée</td>
+          <td><span class="pill pill--now">courant</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.7.0</td>
+          <td class="rev-date">à venir</td>
+          <td>Sprint 9 — Missions, cadrage (Module 2, partie 1)</td>
+          <td><span class="pill pill--next">prochain</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="colophon">
+    <span>AMS — ams-app/ams — dossier généré au tag v0.6.0</span>
+    <span>Sheets SH.01–SH.06 + REV</span>
+  </footer>
+
+</div>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, securityLevel: "loose" });
+</script>
+
+</body>
+</html>
