@@ -380,11 +380,11 @@
       conteneurs le composent, comment le monorepo est rangé, les deux styles
       d'architecture qui coexistent volontairement, un flux réel (connexion +
       2FA), et la feuille de route des 32 sprints. Généré à partir de l'état du
-      dépôt au tag <code>v0.6.0</code>.
+      dépôt au tag <code>v0.7.0</code>.
     </p>
     <dl class="titleblock__meta">
-      <div><dt>Version</dt><dd>v0.6.0</dd></div>
-      <div><dt>Sprint courant</dt><dd>S7-8 / 32</dd></div>
+      <div><dt>Version</dt><dd>v0.7.0</dd></div>
+      <div><dt>Sprint courant</dt><dd>S9 / 32</dd></div>
       <div><dt>Statut</dt><dd>Lot A — en cours</dd></div>
       <div><dt>Dépôt</dt><dd>ams-app/ams</dd></div>
     </dl>
@@ -599,7 +599,7 @@ sequenceDiagram
   <!-- SH.06 — Roadmap -->
   <section class="sheet" id="sh06">
     <div class="sheet__tab"><b>SH.06</b> Feuille de route V1</div>
-    <h2>32 sprints, ≈ 14,7 mois — Sprint 7-8 vient de fermer</h2>
+    <h2>32 sprints, ≈ 14,7 mois — Sprint 9 vient de fermer</h2>
     <p class="sheet__note">
       Cf. <code>Livrable_Partie_7_Roadmap.md</code> §7.2. Le chemin critique
       passe par Habilitations → Référentiel IIA → Plan annuel → Missions →
@@ -607,7 +607,7 @@ sequenceDiagram
     </p>
     <div class="drawing">
       <pre class="mermaid">
-%%{init: {'theme':'base', 'themeVariables': {'background':'#f3f8fa','primaryColor':'#dfeaf0','primaryTextColor':'#0e3a5c','primaryBorderColor':'#0e3a5c','lineColor':'#3d6580','textColor':'#0e3a5c','titleColor':'#0e3a5c','sectionBkgColor':'#e4eef3','sectionBkgColor2':'#d7e7ee','altSectionBkgColor':'#f3f8fa','gridColor':'#c3d8e2','taskBkgColor':'#dfeaf0','taskTextColor':'#0e3a5c','taskTextOutsideColor':'#0e3a5c','taskTextLightColor':'#0e3a5c','taskTextDarkColor':'#0e3a5c','taskBorderColor':'#0e3a5c','activeTaskBkgColor':'#f0ddc8','activeTaskBorderColor':'#b85c22','doneTaskBkgColor':'#cfe0e8','doneTaskBorderColor':'#3d6580','critBkgColor':'#f4c9a8','critBorderColor':'#b85c22','todayLineColor':'#b85c22','fontFamily':'ui-monospace, SFMono-Regular, Menlo, monospace','fontSize':'12.5px'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#f3f8fa','primaryColor':'#dfeaf0','primaryTextColor':'#0e3a5c','primaryBorderColor':'#0e3a5c','lineColor':'#3d6580','textColor':'#0e3a5c','titleColor':'#0e3a5c','sectionBkgColor':'#e4eef3','sectionBkgColor2':'#d7e7ee','altSectionBkgColor':'#f3f8fa','gridColor':'#c3d8e2','taskBkgColor':'#dfeaf0','taskTextColor':'#0e3a5c','taskTextOutsideColor':'#0e3a5c','taskTextLightColor':'#0e3a5c','taskTextDarkColor':'#0e3a5c','taskBorderColor':'#0e3a5c','activeTaskBkgColor':'#f0ddc8','activeTaskBorderColor':'#b85c22','doneTaskBkgColor':'#cfe0e8','doneTaskBorderColor':'#3d6580','critBkgColor':'#f4c9a8','critBorderColor':'#b85c22','todayLineColor':'#b85c22','fontFamily':'ui-monospace, SFMono-Regular, Menlo, monospace'}, 'gantt': {'fontSize':13,'sectionFontSize':13,'numberSectionStyles':4,'barHeight':26,'barGap':8,'topPadding':60,'leftPadding':210,'rightPadding':50,'gridLineStartPadding':40,'tickInterval':'1month'}}}%%
 gantt
   dateFormat YYYY-MM-DD
   axisFormat %b %y
@@ -617,7 +617,7 @@ gantt
   section Lot A — Planification
   S5-S6 Référentiel IIA (livré)        :done, s5, after s1, 28d
   S7-S8 Plan annuel (livré)            :done, s7, after s5, 28d
-  S9 Missions, cadrage (prochain)      :s9, after s7, 14d
+  S9 Missions, cadrage (livré)         :done, s9, after s7, 14d
   section Lot B — Exécution mission
   S10-S16 Tâches, Gantt, Charge        :s10, after s9, 98d
   section Lot C — Suivi
@@ -689,12 +689,18 @@ gantt
           <td class="rev-tag">v0.6.0</td>
           <td class="rev-date">2026-07-27</td>
           <td>Sprint 7-8 — Plan annuel (Module 1) : missions du plan, initialisation N-1, snapshots de validation, charge agrégée</td>
-          <td><span class="pill pill--now">courant</span></td>
+          <td><span class="pill pill--done">livré</span></td>
         </tr>
         <tr>
           <td class="rev-tag">v0.7.0</td>
+          <td class="rev-date">2026-07-28</td>
+          <td>Sprint 9 — Missions, cadrage (Module 2, partie 1) : cycle de vie 4 phases IIA, missions spéciales, confidentialité/visibilité</td>
+          <td><span class="pill pill--now">courant</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.8.0</td>
           <td class="rev-date">à venir</td>
-          <td>Sprint 9 — Missions, cadrage (Module 2, partie 1)</td>
+          <td>Sprint 10-11 — Missions, vue unifiée (Module 2, partie 2)</td>
           <td><span class="pill pill--next">prochain</span></td>
         </tr>
       </tbody>
@@ -702,7 +708,7 @@ gantt
   </section>
 
   <footer class="colophon">
-    <span>AMS — ams-app/ams — dossier généré au tag v0.6.0</span>
+    <span>AMS — ams-app/ams — dossier généré au tag v0.7.0</span>
     <span>Sheets SH.01–SH.06 + REV</span>
   </footer>
 
