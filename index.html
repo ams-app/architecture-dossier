@@ -380,12 +380,12 @@
       conteneurs le composent, comment le monorepo est rangé, les deux styles
       d'architecture qui coexistent volontairement, un flux réel (connexion +
       2FA), et la feuille de route des 32 sprints. Généré à partir de l'état du
-      dépôt au tag <code>v0.11.0</code>.
+      dépôt au tag <code>v0.12.0</code>.
     </p>
     <dl class="titleblock__meta">
-      <div><dt>Version</dt><dd>v0.11.0</dd></div>
-      <div><dt>Sprint courant</dt><dd>S16 / 32</dd></div>
-      <div><dt>Statut</dt><dd>Lot B terminé — Lot C à venir</dd></div>
+      <div><dt>Version</dt><dd>v0.12.0</dd></div>
+      <div><dt>Sprint courant</dt><dd>S17-18 / 32</dd></div>
+      <div><dt>Statut</dt><dd>Lot B terminé — Lot C en cours</dd></div>
       <div><dt>Dépôt</dt><dd>ams-app/ams</dd></div>
     </dl>
   </div>
@@ -599,7 +599,7 @@ sequenceDiagram
   <!-- SH.06 — Roadmap -->
   <section class="sheet" id="sh06">
     <div class="sheet__tab"><b>SH.06</b> Feuille de route V1</div>
-    <h2>32 sprints, ≈ 14,7 mois — Sprint 16 vient de fermer (Lot B terminé)</h2>
+    <h2>32 sprints, ≈ 14,7 mois — Sprint 17-18 vient de fermer</h2>
     <p class="sheet__note">
       Cf. <code>Livrable_Partie_7_Roadmap.md</code> §7.2. Le chemin critique
       passe par Habilitations → Référentiel IIA → Plan annuel → Missions →
@@ -624,9 +624,11 @@ gantt
   S14-S15 Gantt (livré)                 :done, s14, after s12, 28d
   S16 Plan de charge (livré)            :done, s16, after s14, 14d
   section Lot C — Suivi
-  S17-S20 Feuilles temps, Demandes     :s17, after s16, 56d
+  S17-S18 Feuilles temps (livré)       :done, s17, after s16, 28d
+  S19 Demandes documentaires           :s19, after s17, 14d
+  S20 Recommandations, cycle de vie    :s20, after s19, 14d
   section Lot C/D — Boucles avancées
-  S21-S27 Recos, Constats, Risques     :s21, after s17, 98d
+  S21-S27 Recos, Constats, Risques     :s21, after s20, 98d
   section Lot E — Pilotage
   S28-S29 Console admin, mobile       :s28, after s21, 28d
   section Stabilisation
@@ -722,12 +724,18 @@ gantt
           <td class="rev-tag">v0.11.0</td>
           <td class="rev-date">2026-08-29</td>
           <td>Sprint 16 — Plan de charge (Module 7) : occupation hebdomadaire par auditeur, vues individuelle/consolidée/par mission, alertes de surcharge/sous-charge — <b>fin du Lot B</b></td>
-          <td><span class="pill pill--now">courant</span></td>
+          <td><span class="pill pill--done">livré</span></td>
         </tr>
         <tr>
           <td class="rev-tag">v0.12.0</td>
+          <td class="rev-date">2026-08-30</td>
+          <td>Sprint 17-18 — Feuilles de temps (Module 6) : saisie hebdomadaire, validation hiérarchique à 1 ou 2 niveaux, alimentation de la charge réelle — <b>1er sprint du Lot C</b></td>
+          <td><span class="pill pill--now">courant</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.13.0</td>
           <td class="rev-date">à venir</td>
-          <td>Sprint 17-20 — Feuilles de temps, Demandes de tâches (Lot C — Suivi)</td>
+          <td>Sprint 19 — Demandes documentaires (Module 9) : création, relances temporisées, escalades</td>
           <td><span class="pill pill--next">prochain</span></td>
         </tr>
       </tbody>
@@ -735,7 +743,7 @@ gantt
   </section>
 
   <footer class="colophon">
-    <span>AMS — ams-app/ams — dossier généré au tag v0.11.0</span>
+    <span>AMS — ams-app/ams — dossier généré au tag v0.12.0</span>
     <span>Sheets SH.01–SH.06 + REV</span>
   </footer>
 
