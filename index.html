@@ -380,11 +380,11 @@
       conteneurs le composent, comment le monorepo est rangé, les deux styles
       d'architecture qui coexistent volontairement, un flux réel (connexion +
       2FA), et la feuille de route des 32 sprints. Généré à partir de l'état du
-      dépôt au tag <code>v0.12.0</code>.
+      dépôt au tag <code>v0.13.0</code>.
     </p>
     <dl class="titleblock__meta">
-      <div><dt>Version</dt><dd>v0.12.0</dd></div>
-      <div><dt>Sprint courant</dt><dd>S17-18 / 32</dd></div>
+      <div><dt>Version</dt><dd>v0.13.0</dd></div>
+      <div><dt>Sprint courant</dt><dd>S19 / 32</dd></div>
       <div><dt>Statut</dt><dd>Lot B terminé — Lot C en cours</dd></div>
       <div><dt>Dépôt</dt><dd>ams-app/ams</dd></div>
     </dl>
@@ -599,7 +599,7 @@ sequenceDiagram
   <!-- SH.06 — Roadmap -->
   <section class="sheet" id="sh06">
     <div class="sheet__tab"><b>SH.06</b> Feuille de route V1</div>
-    <h2>32 sprints, ≈ 14,7 mois — Sprint 17-18 vient de fermer</h2>
+    <h2>32 sprints, ≈ 14,7 mois — Sprint 19 vient de fermer</h2>
     <p class="sheet__note">
       Cf. <code>Livrable_Partie_7_Roadmap.md</code> §7.2. Le chemin critique
       passe par Habilitations → Référentiel IIA → Plan annuel → Missions →
@@ -625,7 +625,7 @@ gantt
   S16 Plan de charge (livré)            :done, s16, after s14, 14d
   section Lot C — Suivi
   S17-S18 Feuilles temps (livré)       :done, s17, after s16, 28d
-  S19 Demandes documentaires           :s19, after s17, 14d
+  S19 Demandes documentaires (livré)   :done, s19, after s17, 14d
   S20 Recommandations, cycle de vie    :s20, after s19, 14d
   section Lot C/D — Boucles avancées
   S21-S27 Recos, Constats, Risques     :s21, after s20, 98d
@@ -730,12 +730,18 @@ gantt
           <td class="rev-tag">v0.12.0</td>
           <td class="rev-date">2026-08-30</td>
           <td>Sprint 17-18 — Feuilles de temps (Module 6) : saisie hebdomadaire, validation hiérarchique à 1 ou 2 niveaux, alimentation de la charge réelle — <b>1er sprint du Lot C</b></td>
-          <td><span class="pill pill--now">courant</span></td>
+          <td><span class="pill pill--done">livré</span></td>
         </tr>
         <tr>
           <td class="rev-tag">v0.13.0</td>
+          <td class="rev-date">2026-08-30</td>
+          <td>Sprint 19 — Demandes documentaires (Module 9) : création, relances <b>manuelles</b> tracées, pièces jointes réelles (mécanisme générique réutilisable) — le modèle a confirmé qu'il n'y a pas de scheduler/SMTP automatique en V1</td>
+          <td><span class="pill pill--now">courant</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.14.0</td>
           <td class="rev-date">à venir</td>
-          <td>Sprint 19 — Demandes documentaires (Module 9) : création, relances temporisées, escalades</td>
+          <td>Sprint 20 — Recommandations, cycle de vie (Module 8, partie 1) : création, statuts, workflow d'activation DAI, lien constat↔reco</td>
           <td><span class="pill pill--next">prochain</span></td>
         </tr>
       </tbody>
@@ -743,7 +749,7 @@ gantt
   </section>
 
   <footer class="colophon">
-    <span>AMS — ams-app/ams — dossier généré au tag v0.12.0</span>
+    <span>AMS — ams-app/ams — dossier généré au tag v0.13.0</span>
     <span>Sheets SH.01–SH.06 + REV</span>
   </footer>
 
