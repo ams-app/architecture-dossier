@@ -380,11 +380,11 @@
       conteneurs le composent, comment le monorepo est rangé, les deux styles
       d'architecture qui coexistent volontairement, un flux réel (connexion +
       2FA), et la feuille de route des 32 sprints. Généré à partir de l'état du
-      dépôt au tag <code>v0.15.0</code>.
+      dépôt au tag <code>v0.16.0</code>.
     </p>
     <dl class="titleblock__meta">
-      <div><dt>Version</dt><dd>v0.15.0</dd></div>
-      <div><dt>Sprint courant</dt><dd>S21 / 32</dd></div>
+      <div><dt>Version</dt><dd>v0.16.0</dd></div>
+      <div><dt>Sprint courant</dt><dd>S22 / 32</dd></div>
       <div><dt>Statut</dt><dd>Lot C terminé — Lot C/D en cours</dd></div>
       <div><dt>Dépôt</dt><dd>ams-app/ams</dd></div>
     </dl>
@@ -599,7 +599,7 @@ sequenceDiagram
   <!-- SH.06 — Roadmap -->
   <section class="sheet" id="sh06">
     <div class="sheet__tab"><b>SH.06</b> Feuille de route V1</div>
-    <h2>32 sprints, ≈ 14,7 mois — Sprint 21 vient de fermer</h2>
+    <h2>32 sprints, ≈ 14,7 mois — Sprint 22 vient de fermer</h2>
     <p class="sheet__note">
       Cf. <code>Livrable_Partie_7_Roadmap.md</code> §7.2. Le chemin critique
       passe par Habilitations → Référentiel IIA → Plan annuel → Missions →
@@ -629,7 +629,8 @@ gantt
   S20 Constats + Recos, validation (livré) :done, s20, after s19, 14d
   section Lot C/D — Boucles avancées
   S21 Recos, suivi mensuel (livré)     :done, s21, after s20, 14d
-  S22-S27 Constats, Risques, Prog. travail :s22, after s21, 84d
+  S22 Constats, complément (livré)     :done, s22, after s21, 14d
+  S23-S27 Risques, Prog. travail        :s23, after s22, 70d
   section Lot E — Pilotage
   S28-S29 Console admin, mobile       :s28, after s21, 28d
   section Stabilisation
@@ -749,12 +750,18 @@ gantt
           <td class="rev-tag">v0.15.0</td>
           <td class="rev-date">2026-08-31</td>
           <td>Sprint 21 — Recommandations, suivi post-validation (Module 8, partie 2) : bascule informelle suiveur, session mensuelle de pulse-checks (déclenchement manuel DAI), transitions formelles Soldée/Stand-by/Abandonnée avec pièce justificative, verrouillage post-clôture mission — <b>1er sprint du Lot C/D</b></td>
-          <td><span class="pill pill--now">courant</span></td>
+          <td><span class="pill pill--done">livré</span></td>
         </tr>
         <tr>
           <td class="rev-tag">v0.16.0</td>
+          <td class="rev-date">2026-08-31</td>
+          <td>Sprint 22 — Constats (Module 11), complément : édition post-Validé DAI (RACI 11.06), portefeuille consolidé (11.08), export Excel (11.09), preuve obligatoire avant validation DAI (US 11.1), constat parent Validé DAI requis avant activation recommandation (US 11.6), 5<sup>e</sup> condition de clôture mission — toutes les recommandations tranchées</td>
+          <td><span class="pill pill--now">courant</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.17.0</td>
           <td class="rev-date">à venir</td>
-          <td>Sprint 22 — Constats (Module 11) : le reste du périmètre non couvert par la version minimale du Sprint 20 (export Excel du portefeuille, modification post-Validé DAI)</td>
+          <td>Sprint 23 — Risques (Module 12) : référentiel léger, création à la volée, validation DAI</td>
           <td><span class="pill pill--next">prochain</span></td>
         </tr>
       </tbody>
@@ -762,7 +769,7 @@ gantt
   </section>
 
   <footer class="colophon">
-    <span>AMS — ams-app/ams — dossier généré au tag v0.15.0</span>
+    <span>AMS — ams-app/ams — dossier généré au tag v0.16.0</span>
     <span>Sheets SH.01–SH.06 + REV</span>
   </footer>
 
