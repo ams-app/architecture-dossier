@@ -380,12 +380,12 @@
       conteneurs le composent, comment le monorepo est rangé, les deux styles
       d'architecture qui coexistent volontairement, un flux réel (connexion +
       2FA), et la feuille de route des 32 sprints. Généré à partir de l'état du
-      dépôt au tag <code>v0.19.0</code>.
+      dépôt au tag <code>v0.20.0</code>.
     </p>
     <dl class="titleblock__meta">
-      <div><dt>Version</dt><dd>v0.19.0</dd></div>
-      <div><dt>Sprint courant</dt><dd>S25 / 32</dd></div>
-      <div><dt>Statut</dt><dd>Lot C terminé — Lot C/D en cours</dd></div>
+      <div><dt>Version</dt><dd>v0.20.0</dd></div>
+      <div><dt>Sprint courant</dt><dd>S26-S27 / 32</dd></div>
+      <div><dt>Statut</dt><dd>Lot C/D terminé — Lot E à venir</dd></div>
       <div><dt>Dépôt</dt><dd>ams-app/ams</dd></div>
     </dl>
   </div>
@@ -599,7 +599,7 @@ sequenceDiagram
   <!-- SH.06 — Roadmap -->
   <section class="sheet" id="sh06">
     <div class="sheet__tab"><b>SH.06</b> Feuille de route V1</div>
-    <h2>32 sprints, ≈ 14,7 mois — Sprint 25 vient de fermer</h2>
+    <h2>32 sprints, ≈ 14,7 mois — Sprint 26-27 vient de fermer</h2>
     <p class="sheet__note">
       Cf. <code>Livrable_Partie_7_Roadmap.md</code> §7.2. Le chemin critique
       passe par Habilitations → Référentiel IIA → Plan annuel → Missions →
@@ -633,9 +633,9 @@ gantt
   S23 Risques, référentiel léger (livré) :done, s23, after s22, 14d
   S24 Programme de travail, Volet 1 (livré) :done, s24, after s23, 14d
   S25 Évaluations de performance (livré)  :done, s25, after s24, 14d
-  S26-S27 Synthèse DAI, Carbone            :s26, after s25, 28d
+  S26-S27 Synthèse DAI, Carbone (livré)    :done, s26, after s25, 28d
   section Lot E — Pilotage
-  S28-S29 Console admin, mobile       :s28, after s21, 28d
+  S28-S29 Console admin, mobile       :s28, after s26, 28d
   section Stabilisation
   S30-S32 E2E, dogfooding, démo        :s30, after s28, 42d
       </pre>
@@ -777,12 +777,18 @@ gantt
           <td class="rev-tag">v0.19.0</td>
           <td class="rev-date">2026-08-31</td>
           <td>Sprint 25 — Évaluations de performance (Module 10) : référentiel de critères par profil de séniorité (DAI ou Admin), garde réelle au lancement de mission bloquant tant qu'il manque une grille Validée DAI pour un profil représenté dans l'équipe (instantané figé), création automatique des évaluations en Brouillon à la clôture, workflow de saisie/soumission/prise de connaissance/contestation/arbitrage DAI à 5 statuts, bilan annuel à la demande</td>
-          <td><span class="pill pill--now">courant</span></td>
+          <td><span class="pill pill--done">livré</span></td>
         </tr>
         <tr>
           <td class="rev-tag">v0.20.0</td>
+          <td class="rev-date">2026-09-01</td>
+          <td>Sprint 26-27 — Synthèse DAI / Exports (Module 14) : intégration Carbone CE conteneurisée (spike technique validé), 4 packs (Plan Annuel/Suivi Recommandations/Synthèse Mission/Comité d'Audit) en DOCX/PDF/Excel brut, pack Synthèse Mission aussi ouvert au CM sur ses missions clôturées, branding et templates paramétrables par l'Admin avec validation syntaxique à l'upload, mode dégradé Excel garanti si Carbone indisponible, archive des exports générés</td>
+          <td><span class="pill pill--now">courant</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.21.0</td>
           <td class="rev-date">à venir</td>
-          <td>Sprint 26-27 — Synthèse DAI (Module 14) / intégration Carbone : agrégateur final multi-modules, export PDF</td>
+          <td>Sprint 28 — Console admin, complétion (Module 17) : sections 3-9 restantes</td>
           <td><span class="pill pill--next">prochain</span></td>
         </tr>
       </tbody>
@@ -790,7 +796,7 @@ gantt
   </section>
 
   <footer class="colophon">
-    <span>AMS — ams-app/ams — dossier généré au tag v0.19.0</span>
+    <span>AMS — ams-app/ams — dossier généré au tag v0.20.0</span>
     <span>Sheets SH.01–SH.06 + REV</span>
   </footer>
 
