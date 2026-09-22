@@ -380,12 +380,12 @@
       conteneurs le composent, comment le monorepo est rangé, les deux styles
       d'architecture qui coexistent volontairement, un flux réel (connexion +
       2FA), et la feuille de route des 32 sprints. Généré à partir de l'état du
-      dépôt au tag <code>v0.22.0</code>.
+      dépôt au tag <code>v0.23.0</code>.
     </p>
     <dl class="titleblock__meta">
-      <div><dt>Version</dt><dd>v0.22.0</dd></div>
-      <div><dt>Sprint courant</dt><dd>S29 / 32</dd></div>
-      <div><dt>Statut</dt><dd>Lot E terminé — Stabilisation à venir</dd></div>
+      <div><dt>Version</dt><dd>v0.23.0</dd></div>
+      <div><dt>Sprint courant</dt><dd>S30 / 32</dd></div>
+      <div><dt>Statut</dt><dd>Stabilisation en cours — S31-S32 à venir</dd></div>
       <div><dt>Dépôt</dt><dd>ams-app/ams</dd></div>
     </dl>
   </div>
@@ -599,7 +599,7 @@ sequenceDiagram
   <!-- SH.06 — Roadmap -->
   <section class="sheet" id="sh06">
     <div class="sheet__tab"><b>SH.06</b> Feuille de route V1</div>
-    <h2>32 sprints, ≈ 14,7 mois — Sprint 29 vient de fermer</h2>
+    <h2>32 sprints, ≈ 14,7 mois — Sprint 30 vient de fermer</h2>
     <p class="sheet__note">
       Cf. <code>Livrable_Partie_7_Roadmap.md</code> §7.2. Le chemin critique
       passe par Habilitations → Référentiel IIA → Plan annuel → Missions →
@@ -638,7 +638,8 @@ gantt
   S28 Console admin, complétion (livré) :done, s28, after s26, 14d
   S29 Mobile responsive, i18n (livré)  :done, s29, after s28, 14d
   section Stabilisation
-  S30-S32 E2E, dogfooding, démo        :s30, after s29, 42d
+  S30 Tests E2E, durcissement sécurité (livré) :done, s30, after s29, 14d
+  S31-S32 Dogfooding, préparation démo :s31, after s30, 28d
       </pre>
     </div>
     <p class="drawing__caption">SH.06 — durées indicatives (2 semaines/sprint), pas des dates engagées</p>
@@ -796,12 +797,18 @@ gantt
           <td class="rev-tag">v0.22.0</td>
           <td class="rev-date">2026-09-19</td>
           <td>Sprint 29 — Responsive mobile + durcissement i18n (Modules 20, 18) : shell de navigation persistant (sidebar desktop, icônes tablette, tiroir mobile — absent depuis le Sprint 1-2), écrans cross-missions Mes tâches/Mes recommandations/Mes demandes, portefeuille consolidé des constats, sommaire Console admin (9 cartes), fiche mission restreinte à l'onglet Synthèse sur mobile, bouton "Colonnes" tablette, audit i18n exhaustif (1 bug de clé manquante corrigé)</td>
-          <td><span class="pill pill--now">courant</span></td>
+          <td><span class="pill pill--done">livré</span></td>
         </tr>
         <tr>
           <td class="rev-tag">v0.23.0</td>
+          <td class="rev-date">2026-09-22</td>
+          <td>Sprint 30 — Tests de bout en bout et durcissement sécurité : suite pgTAP (46 assertions, 13 fonctions trigger PL/pgSQL), suite E2E Playwright (parcours critique complet, a révélé et permis de corriger un bug systémique de 5 boutons cassés — POST sans corps), en-têtes sécurité et rate limiting (Partie 4 §4.8), `pnpm audit` bloquant en CI, `SECURITY.md`, balayage systématique des permissions par rôle sur les 17 modules</td>
+          <td><span class="pill pill--now">courant</span></td>
+        </tr>
+        <tr>
+          <td class="rev-tag">v0.24.0</td>
           <td class="rev-date">à venir</td>
-          <td>Sprint 30 — Tests de bout en bout et durcissement sécurité</td>
+          <td>Sprint 31 — Dogfooding interne</td>
           <td><span class="pill pill--next">prochain</span></td>
         </tr>
       </tbody>
@@ -809,7 +816,7 @@ gantt
   </section>
 
   <footer class="colophon">
-    <span>AMS — ams-app/ams — dossier généré au tag v0.22.0</span>
+    <span>AMS — ams-app/ams — dossier généré au tag v0.23.0</span>
     <span>Sheets SH.01–SH.06 + REV</span>
   </footer>
 
